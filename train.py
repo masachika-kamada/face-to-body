@@ -79,8 +79,8 @@ def main():
     # Save models
     print("\n=== Saving models... ===")
     os.makedirs("models", exist_ok=True)
-    joblib.dump(model_height, "models/weight_predictor.model")
-    joblib.dump(model_weight, "models/height_predictor.model")
+    joblib.dump(model_height, "models/height_predictor.model")
+    joblib.dump(model_weight, "models/weight_predictor.model")
     joblib.dump(model_BMI, "models/bmi_predictor.model")
 
 
