@@ -3,3 +3,5 @@
 *.png
 __pycache__/
 .vscode/
+talents_dataset/
+originals(dont-use)/
