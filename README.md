@@ -1,17 +1,21 @@
-# Face-to-height-weight-BMI-estimation
+# Face to Body
 
-## Objective :
-Give a human image , identify height and weight and BMI of the individual.
+## 機能
+顔写真を入力すると、体重、身長、BMIを推定する
 
-## Solution :
-The solution has been inspired by the paper FACE2BMI. This paper shows that face can be an important estimator of your height and weight and hence the BMI. The dataset quoted in the papaer is not publicly available hence i could not use the mentioned dataset for my work. I gathered data from internet manually. I have used almost similar technique in which i have used the celebrity's face to estimate their height,weight and BMI.
+## アプリケーションへの実装
+技育CAMPハッカソンで作成した [Henkenyzer](https://github.com/shimizuyuta/hackathon_vol5) のバックエンドに使用しました
+
+## リポジトリについて
+FACE2BMIという論文がもととなっているらしい。顔写真をエンコードして128次元の配列に変換することで、顔の特徴量を作成することができる。実際、face_recognitionのエンコードを使用して、特徴間の距離から同一人物の推定にも使用されている（精度は不明）。これを利用して機械学習により、体重、身長、BMIを推定する。参考にしたリポジトリでは、外国の著名人を学習データとしていたため、日本人の予測ができるようにスクレイピングでデータセットを作成。また、顔のエンコードデータのみでは予測精度が低かったため、顔画像から年齢と性別を推定し、その結果を入力データに統合することで、予測精度を向上。PyCaretによる学習、モデルの保存、予測までを作成したが、herokuにデプロイする際にサイズが大きすぎたため、軽量化するためにsklearnでも実装。
 
 ## Solution workflow
-Image ==> Face ==> Face embedding ==> Height
+- Image ==> Face ==> Face embedding ==> Height<br>(予測精度が低かったのでWeight, BMIから逆算するとよい）
 
-Image ==> Face ==> Face embedding ==> Weight
+- Image ==> Face ==> Face embedding ==> Weight
 
-Image ==> Face ==> Face embedding ==> BMI
+- Image ==> Face ==> Face embedding ==> BMI
 
-## Data Collection and Augmentation
-The dataset consists of 5-20 images of bollywood celeberities. The various images has been taken under different conditions so that we have enough variations. The images that has been taken is downloaded using google serach engine results. Care has been taken care that all the images are latest. The label for each celeberity has been noted from the publicly available forums.
+---
+
+参考：[Face-to-height-weight-BMI-estimation](https://github.com/abhaymise/Face-to-height-weight-BMI-estimation-)
